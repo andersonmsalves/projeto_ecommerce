@@ -15,8 +15,8 @@ public class MarcaProduto implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_marca_produto")
     private Long id;
 
+    @Column(name = "nome_descricao", nullable = false)
     private String nomeDesc;
-
 
     public Long getId() {
         return id;
