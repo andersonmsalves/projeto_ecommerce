@@ -1,12 +1,13 @@
 package br.com.rotadocodigo.ecommerce.base.model;
 
+import br.com.rotadocodigo.ecommerce.base.enums.TipoEndereco;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "marca_produto")
+@Table(name = "endereco")
 @SequenceGenerator(name = "seq_endereco", sequenceName = "seq_endereco", allocationSize = 1, initialValue = 1)
 public class Endereco implements Serializable {
 
@@ -33,6 +34,9 @@ public class Endereco implements Serializable {
     @ManyToOne(targetEntity =  Pessoa.class)
     @JoinColumn(name = "pessoa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_fk"))
     private Pessoa pessoa;
+
+    @Enumerated(EnumType.STRING)
+    private TipoEndereco tipoEndereco;
 
     public Long getId() {
         return id;
@@ -105,6 +109,10 @@ public class Endereco implements Serializable {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
+
+    public void setTipoEndereco(TipoEndereco tipoEndereco){ this.tipoEndereco = tipoEndereco;}
+
+    public TipoEndereco getTipoEndereco(){return this.tipoEndereco; }
 
     @Override
     public boolean equals(Object o) {
